@@ -313,7 +313,7 @@ class EventRequest implements ArrayAccess {
       'upload_tag' => $this->container['upload_tag'],
       'upload_source' => $this->container['upload_source'],
     );
-    $normalized_payload = array_filter($normalized_payload);
+    $normalized_payload = array_filter($normalized_payload, function($val) { if(is_array($val)) { return true; } else { return strlen($val); } });
 
     return $normalized_payload;
   }
